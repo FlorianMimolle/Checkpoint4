@@ -347,3 +347,6 @@ if Graphique == "Prix Conseillés":
     df_prix = pd.read_csv("https://raw.githubusercontent.com/FlorianMimolle/Checkpoint4/main/df_prix",low_memory=False)
     df_prix = df_prix.drop(columns = ["Unnamed: 0"])
     df_prix
+    st.write("- low : moins de 20€\n- medium : entre 20 et 40€\n- cher : entre 40 et 80€\n- très cher : entre 80 et 200€\n- luxe : supérieur à 200€")
+    st.write("Arbre de décision ayant eu le meilleur score (celui utiliser pour déterminer la tranche de prix conseillées)")
+    st.image("https://github.com/FlorianMimolle/Checkpoint4/blob/main/Unknown.png?raw=true")

@@ -25,7 +25,7 @@ def textualisation(df):
         return result
 def couleur(*args, **kwargs):
         import random
-        return "rgb(0, 150, {})".format(random.randint(100, 255))
+        return "rgb({}, 0, 0)".format(random.randint(100, 255))
 
 #Définit le mode "large" du site : afin que l'ensemble de la page soit utilisée pour afficher les graphiques:
 st.set_page_config(layout="wide")
@@ -135,7 +135,7 @@ if Graphique == "Nombre de vins produits par pays":
             data=df_1,
             columns=['country',"title"],
             key_on='properties.name',
-            fill_color='RdYlGn',
+            fill_color='Reds',
             fill_opacity=0.7,
             line_opacity=0.2,
             threshold_scale = df_1["title"].quantile((0,0.2,0.4,0.6,0.8,1)).tolist(), #On utilise les quantiles pour répartir les pays équitablement dans les couleurs
@@ -163,6 +163,7 @@ if Graphique == "Nombre de vins produits par pays":
         fig.update_layout(height = 600, #Hauteur du graphique (afin que les trois graphiques en bar de la page soient homogènes)
                           width =700,
                           font = dict(size = 16))
+        fig.update_traces(marker_color='indianred')
         st.plotly_chart(fig)
         
 #les pays qui ont les meilleures notes: 
@@ -192,7 +193,7 @@ if Graphique == "Pays qui ont les meilleures notes":
             data=df_2,
             columns=['country',"points"],
             key_on='properties.name',
-            fill_color='RdYlGn',
+            fill_color='Reds',
             fill_opacity=0.7,
             line_opacity=0.2,
             threshold_scale = df_2["points"].quantile((0,0.2,0.4,0.6,0.8,1)).tolist(), #On utilise les quantiles pour répartir les pays équitablement dans les couleurs
@@ -220,6 +221,7 @@ if Graphique == "Pays qui ont les meilleures notes":
         fig.update_layout(height = 600, #Hauteur du graphique (afin que les trois graphiques en bar de la page soient homogènes)
                           width =700,
                           font = dict(size = 16))
+        fig.update_traces(marker_color='indianred')
         st.plotly_chart(fig)
         
 if Graphique == "Moyennes de notes par cépage":
@@ -253,6 +255,7 @@ if Graphique == "Moyennes de notes par cépage":
                     height = 800, #Hauteur du graphique (afin que les trois graphiques en bar de la page soient homogènes)
                     width =1300,
                     font = dict(size = 16))
+    fig.update_traces(marker_color='indianred')
 
     st.plotly_chart(fig)
     
@@ -273,6 +276,7 @@ if Graphique =="Distribution par quantile":
                     height = 800, #Hauteur du graphique (afin que les trois graphiques en bar de la page soient homogènes)
                     width =1300,
                     font = dict(size = 16))
+    fig.update_traces(marker_color='indianred')
     fig['layout']['yaxis1']['title']='€'
     fig['layout']['yaxis2']['title']='Note moyenne'
     fig['layout']['yaxis3']['title']='Année'
@@ -282,7 +286,7 @@ if Graphique =="Wordcloud de Description":
     st.title("Wordcloud des 20 mots les plus fréquents dans la colonne 'Description'")
     texte_all = textualisation(df_all)
     texte = textualisation(df)
-    url = requests.get("https://github.com/FlorianMimolle/Checkpoint4/blob/main/sticker-nuage-noir.jpg?raw=true")
+    url = requests.get("https://github.com/FlorianMimolle/Checkpoint4/blob/main/Ardoise%20bouteille%20de%20vin%20Securit%20%5Bgg112%5D(1).jpg?raw=true")
     img = Image.open(BytesIO(url.content))
     mask = np.array(img)
     mask[mask == 1] = 255
